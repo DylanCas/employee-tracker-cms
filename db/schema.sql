@@ -4,11 +4,12 @@ CREATE DATABASE company_db;
 USE company_db;
 
 -- TODO: Implement foreign-primary key biz
--- Error: ERROR 1064 (42000): You have an error in your SQL syntax; ...
-CREATE TABLE department {
-    id INT NOT NULL AUTO_INCREMENT,
-    depName VARCHAR(30)
-}
+CREATE TABLE department (
+    id INT AUTO_INCREMENT,
+    depName VARCHAR(30),
+    PRIMARY KEY(id)
+);
+
 
 -- TODO: Implement foreign-primary key biz
 -- CREATE TABLE role {
