@@ -1,20 +1,9 @@
-// node modules for inquirer, MySQL, express
-const express = require('express');
+// node modules for inquirer, MySQL, and the console table
 const inquirer = require('inquirer');
-const mysql = require('mysql2');
+require('dotenv').config()
 
-const app = express();
-
-
-// Access chosen database, within the db folder/schema file
-// const db = mysql.createConnection({
-//     host: 'localhost',
-//     user: 'root',
-//     // TODO: Review .env info to encrypt password
-//     password: '',
-//     // TODO: Choose db?
-//     database: ''
-//   });
+// Pulls outside functions from routes folder to use in later switch
+const routes = require('./routes/userRoutes')
   
 
 // Inquirer questions
@@ -29,6 +18,10 @@ inquirer.prompt([
 
 .then((data) => {
     console.log(data)
+    switch(data.initialChoice) {
+        case 'View All Departments':
+            routes.viewAllDepartments()
+        break;
+    }
 })
 
-// Can I use switch statement to handle further choices or is this where promise function may come in? Or may the promise exist within the swicth?
