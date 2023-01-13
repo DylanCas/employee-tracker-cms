@@ -22,22 +22,28 @@ inquirer.prompt([
             routes.viewAllEmployees
         break;
         case 'Add Employee':
-            // Add Employee
+            console.log(data.initialChoice)
+            routes.addEmployee
         break;
         case 'Update Employee Role':
-            // Update Employee Role
+            console.log(data.initialChoice)
+            routes.updateEmployeeRole
         break;
         case 'View All Roles':
-            // View All Roles
+            console.log(data.initialChoice)
+            routes.viewAllRoles
         break;
         case 'Add Role':
-            // Add Role
+            console.log(data.initialChoice)
+            routes.addRole
         break; 
         case 'View All Departments':
+            console.log(data.initialChoice)
             routes.viewAllDepartments
         break;
         case 'Add Department':
-            // Add Department
+            console.log(data.initialChoice)
+            routes.addDepartment
         break;
     }
 })
