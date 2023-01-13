@@ -4,7 +4,6 @@ require('dotenv').config()
 
 // Pulls outside functions from routes folder to use in later switch
 const routes = require('./routes/userRoutes')
-  
 
 // Inquirer questions
 inquirer.prompt([
@@ -17,10 +16,13 @@ inquirer.prompt([
 ])
 
 .then((data) => {
-    console.log(data)
     switch(data.initialChoice) {
+        case 'View All Employees':
+            console.log(data.initialChoice)
+            routes.viewAllEmployees
+        break;
         case 'View All Departments':
-            routes.viewAllDepartments()
+            routes.viewAllDepartments
         break;
     }
 })

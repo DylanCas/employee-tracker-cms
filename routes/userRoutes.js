@@ -3,10 +3,15 @@ const cTable = require('console.table');
 
 const routes = {
     viewAllDepartments: function() {
-        db.query('SELECT * FROM departments', function (err, results) {
-            console.log(results);
+        db.query('SELECT * FROM department', function (err, res) {
+            console.table(res);
           });
-    }
+    },
+    viewAllEmployees: function() {
+        db.query('SELECT * FROM employee', function (err, res) {
+            console.table(res);
+          });
+    },
 }
 
 
