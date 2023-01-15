@@ -1,4 +1,4 @@
-// node modules for inquirer, MySQL, and the console table
+// node modules for inquirer, and the console table
 const inquirer = require('inquirer');
 require('dotenv').config()
 
@@ -46,5 +46,6 @@ inquirer.prompt([
             routes.addDepartment()
         break;
     }
+    // TODO: need to loop back through when initialChoice !== 'Quit'
 })
 

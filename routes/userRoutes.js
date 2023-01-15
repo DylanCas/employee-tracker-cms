@@ -4,7 +4,10 @@ const inquirer = require('inquirer');
 
 const routes = {
     viewAllEmployees: function() {
-        db.query('SELECT * FROM employee', function (err, res) {
+        db.query('SELECT * FROM employee', (err, res) => {
+            if (err) {
+                console.log('Sorry, there was an unexpected error. Please restart and try again.');
+            }
             console.table(res);
           });
     },
@@ -23,13 +26,14 @@ const routes = {
             {
                 type: 'list',
                 message: 'What is the employees role?',
+                // TODO: have list update based on existing roles in db?
                 choices: ['Sales Lead', 'Sales Person', 'Lead Engineer', 'Software Engineer', 'Account Manager', 'Accountant', 'Legal Team', 'Lawyer'],
                 name: 'newEmployeeRole'
             },
             {
                 type: 'list',
                 message: 'Who is the employees manager?',
-                // How to have list display existing names from database?
+                // TODO: How to have list display existing names from database?
                 choices: ['', '', '', ],
                 name: 'newEmployeeManager'
             },
@@ -40,21 +44,25 @@ const routes = {
             {
                 type: 'list',
                 message: 'Which employees role do you want to update?',
-                // How to have list display existing names from database?
+                // TODO: How to have list display existing names from database?
                 choices: ['', '', '', ],
                 name: 'employeeUpdate'
             },
             {
                 type: 'list',
                 message: 'Which role do you want to assign the selected employee?',
+                // TODO: have list update based on existing roles in db?
                 choices: ['Sales Lead', 'Sales Person', 'Lead Engineer', 'Software Engineer', 'Account Manager', 'Accountant', 'Legal Team', 'Lawyer'],
                 name: 'employeeUpdateRole'
             },
         ])
     },
     viewAllRoles: function() {
-        db.query('SELECT * FROM roles', function ( err, res) {
-            console.table(res)
+        db.query('SELECT * FROM roles', ( err, res) => {
+            if (err) {
+                console.log('Sorry, there was an unexpected error. Please restart and try again.');
+            };
+            console.table(res);
         })
     },
     addRole: function() {
@@ -72,13 +80,17 @@ const routes = {
             {
                 type: 'list',
                 message: 'What department does the role belong to?',
+                // TODO: have list update based on existing departments in db?
                 choices: ['Sales', 'Engineering', 'Finance', 'Legal'],
                 name: 'newRoleDepartment'
             }
         ])
     },
     viewAllDepartments: function() {
-        db.query('SELECT * FROM department', function (err, res) {
+        db.query('SELECT * FROM department', (err, res) => {
+            if (err) {
+                console.log('Sorry, there was an unexpected error. Please restart and try again.');
+            }
             console.table(res);
         });
     }, 
