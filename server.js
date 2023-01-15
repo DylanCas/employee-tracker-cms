@@ -9,8 +9,8 @@ const routes = require('./routes/userRoutes')
 inquirer.prompt([
     {
         type: 'list',
-        message: 'What would you like to do?(Use Up and Down Arrows)',
-        choices: ['View All Employees', 'Add Employee', 'Update Employee Role', 'View All Roles', 'Add Role', 'View All Departments', 'Add Department'],
+        message: 'What would you like to do?',
+        choices: ['View All Employees', 'Add Employee', 'Update Employee Role', 'View All Roles', 'Add Role', 'View All Departments', 'Add Department', 'Quit'],
         name: 'initialChoice'
     },
 ])
@@ -19,31 +19,31 @@ inquirer.prompt([
     switch(data.initialChoice) {
         case 'View All Employees':
             console.log(data.initialChoice)
-            routes.viewAllEmployees
+            routes.viewAllEmployees()
         break;
         case 'Add Employee':
             console.log(data.initialChoice)
-            routes.addEmployee
+            routes.addEmployee()
         break;
         case 'Update Employee Role':
             console.log(data.initialChoice)
-            routes.updateEmployeeRole
+            routes.updateEmployeeRole()
         break;
         case 'View All Roles':
             console.log(data.initialChoice)
-            routes.viewAllRoles
+            routes.viewAllRoles()
         break;
         case 'Add Role':
             console.log(data.initialChoice)
-            routes.addRole
+            routes.addRole()
         break; 
         case 'View All Departments':
             console.log(data.initialChoice)
-            routes.viewAllDepartments
+            routes.viewAllDepartments()
         break;
         case 'Add Department':
             console.log(data.initialChoice)
-            routes.addDepartment
+            routes.addDepartment()
         break;
     }
 })
