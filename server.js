@@ -6,6 +6,7 @@ require('dotenv').config()
 const routes = require('./routes/userRoutes')
 
 // Inquirer questions
+function initialQuestions() {
 inquirer.prompt([
     {
         type: 'list',
@@ -46,6 +47,11 @@ inquirer.prompt([
             routes.addDepartment()
         break;
     }
-    // TODO: need to loop back through when initialChoice !== 'Quit'
+    // This technically works, though it partially covers previous results, such as a table. 
+    if (data.initialChoice !== 'Quit') {
+        initialQuestions()
+    }
 })
+}
 
+initialQuestions()

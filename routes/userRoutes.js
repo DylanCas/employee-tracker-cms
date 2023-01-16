@@ -34,7 +34,7 @@ const routes = {
                 type: 'list',
                 message: 'Who is the employees manager?',
                 // TODO: How to have list display existing names from database?
-                choices: ['', '', '', ],
+                choices: ['JD McLane', 'Dylan Casabona', 'Lauren DiBerardino', 'Matt Miller'],
                 name: 'newEmployeeManager'
             },
         ])
@@ -45,7 +45,7 @@ const routes = {
                 type: 'list',
                 message: 'Which employees role do you want to update?',
                 // TODO: How to have list display existing names from database?
-                choices: ['', '', '', ],
+                choices: ['JD McLane', 'Jonathan Rees', 'Dylan Casabona', 'Kirk Newkirk', 'Lauren DiBerardino', 'Megan Peers', 'Matt Miller', 'Rob Taylor'],
                 name: 'employeeUpdate'
             },
             {

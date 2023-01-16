@@ -23,4 +23,3 @@ VALUES (1, "JD", "McLane", 1, null),
        (6, "Megan", "Peers", 6, 5),
        (7, "Matt", "Miller", 7, null),
        (8, "Rob", "Taylor", 8, 7); 
-
