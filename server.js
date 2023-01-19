@@ -4,6 +4,8 @@ require('dotenv').config()
 
 // Pulls outside functions from routes folder to use in later switch
 const routes = require('./routes/userRoutes')
+// updated async functions
+const { viewAllEmployees, addEmployee, updateEmployeeRole, viewAllRoles, addRole, viewAllDepartments, addDepartment } = require('./routes/userRoutes')
 
 // Inquirer questions
 function initialQuestions() {
@@ -19,38 +21,32 @@ inquirer.prompt([
 .then((data) => {
     switch(data.initialChoice) {
         case 'View All Employees':
-            console.log(data.initialChoice)
-            routes.viewAllEmployees()
+            viewAllEmployees()
         break;
         case 'Add Employee':
-            console.log(data.initialChoice)
-            routes.addEmployee()
+            addEmployee()
         break;
         case 'Update Employee Role':
-            console.log(data.initialChoice)
-            routes.updateEmployeeRole()
+            updateEmployeeRole()
         break;
         case 'View All Roles':
-            console.log(data.initialChoice)
-            routes.viewAllRoles()
+            viewAllRoles()
         break;
         case 'Add Role':
-            console.log(data.initialChoice)
-            routes.addRole()
+            addRole()
         break; 
         case 'View All Departments':
-            console.log(data.initialChoice)
-            routes.viewAllDepartments()
+            viewAllDepartments()
         break;
         case 'Add Department':
-            console.log(data.initialChoice)
-            routes.addDepartment()
+            addDepartment()
         break;
     }
-    // This technically works, though it partially covers previous results, such as a table. 
-    if (data.initialChoice !== 'Quit') {
-        initialQuestions()
-    }
+    // This technically works, though it partially covers previous results, such as a table. Nevermind, seems to interrupt the further prompts from routes
+    
+    // if (data.initialChoice !== 'Quit') {
+    //     initialQuestions()
+    // }
 })
 }
 
