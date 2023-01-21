@@ -4,27 +4,30 @@ const inquirer = require('inquirer');
 
 const viewAllEmployees = () => {
     db.query(`
-    SELECT em.id AS id, em.first_name as 'First Name', em.last_name as 'Last Name', roles.title AS title, department.depName AS department, roles.salary AS salary, CONCAT(manager.first_name, ' ', manager.last_name) AS manager FROM employee em 
+    SELECT em.id AS id, em.first_name as 'first name', em.last_name as 'last name', roles.title AS title, department.depName AS department, roles.salary AS salary, CONCAT(manager.first_name, ' ', manager.last_name) AS manager FROM employee em 
     LEFT JOIN roles ON em.role_id = roles.id 
     LEFT JOIN department ON roles.department_id = department.id 
     LEFT JOIN employee manager ON manager.id = em.manager_id;`, (err, res) => {
         if (err) {
             console.log('Sorry, there was an unexpected error. Please restart and try again.');
         }
-        console.log('\n')
+        console.log('\n');
         console.table(res);
+        console.log('\n');
       });
 }
 
 const viewAllRoles = () => {
     db.query(`
-    SELECT roles.id, title, salary, department.depName AS 'Department Name' FROM roles
+    SELECT roles.id, title, salary, department.depName AS 'department name' FROM roles
     LEFT JOIN department ON roles.department_id = department.id;
     `, ( err, res) => {
         if (err) {
             console.log(`Sorry, there was an unexpected error. Please restart and try again. ERROR: ${err}`);
         };
+        console.log(`\n`);
         console.table(res);
+        console.log(`\n`);
     })
 }
 
@@ -33,7 +36,9 @@ const viewAllDepartments = () => {
         if (err) {
             console.log('Sorry, there was an unexpected error. Please restart and try again.');
         }
+        console.log(`\n`);
         console.table(res);
+        console.log(`\n`);
     });
 }
 
@@ -71,7 +76,9 @@ const addEmployee = async () => {
     // console.log(managerNameArr[1])
     const getManagerid = await db.promise().query(`SELECT id FROM employee WHERE last_name = '${managerNameArr[1]}'`)
     console.log(getManagerid[0][0].id)
-    const createEmployee = await db.promise().query(`INSERT INTO employee (first_name, last_name, role_id, manager_id) VALUES ('${newEmployeeFirstName}', '${newEmployeeLastName}', '${getRoleid[0][0].id}', '${getManagerid[0][0].id}')`)
+    const createEmployee = await db.promise().query(
+        `INSERT INTO employee (first_name, last_name, role_id, manager_id) 
+        VALUES ('${newEmployeeFirstName}', '${newEmployeeLastName}', '${getRoleid[0][0].id}', '${getManagerid[0][0].id}')`)
     createEmployee
 }
 
@@ -96,7 +103,7 @@ const updateEmployeeRole = async () => {
 } 
 
 const addRole = async () => {
-    cosn
+    const {newRoleName, newRoleSalary, newRoleDepartment} = await
     inquirer.prompt([
         {
             type: 'input',
@@ -116,6 +123,12 @@ const addRole = async () => {
             name: 'newRoleDepartment'
         }
     ])
+    const getDepartmentid = await db.promise().query(`SELECT id FROM department WHERE depName = '${newRoleDepartment}'`);
+    // console.log(newRoleDepartment);
+    // console.log(getDepartmentid[0][0].id);
+    const createRole = await db.promise().query(`INSERT INTO roles (title, salary, department_id)
+    VALUES ('${newRoleName}', '${newRoleSalary}', '${getDepartmentid[0][0].id}')`)
+    createRole
 }
 
 const addDepartment = async () => {
