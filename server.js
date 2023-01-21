@@ -22,31 +22,34 @@ inquirer.prompt([
     switch(data.initialChoice) {
         case 'View All Employees':
             viewAllEmployees()
+            console.log('\n')
+            initialQuestions()
         break;
         case 'Add Employee':
             addEmployee()
+            // initialQuestions()
         break;
         case 'Update Employee Role':
             updateEmployeeRole()
+            // initialQuestions()
         break;
         case 'View All Roles':
             viewAllRoles()
+            initialQuestions()
         break;
         case 'Add Role':
             addRole()
+            // initialQuestions()
         break; 
         case 'View All Departments':
             viewAllDepartments()
+            initialQuestions()
         break;
         case 'Add Department':
             addDepartment()
+            // initialQuestions()
         break;
     }
-    // This technically works, though it partially covers previous results, such as a table. Nevermind, seems to interrupt the further prompts from routes
-    
-    // if (data.initialChoice !== 'Quit') {
-    //     initialQuestions()
-    // }
 })
 }
 
