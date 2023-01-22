@@ -83,23 +83,29 @@ const addEmployee = async () => {
 }
 
 const updateEmployeeRole = async () => {
-    
+    const {employeeToUpdate, employeeUpdateRole} = await
     inquirer.prompt([
         {
             type: 'list',
             message: 'Which employees role do you want to update?',
             // TODO: How to have list display existing names from database? https://stackoverflow.com/questions/66626936/inquirer-js-populate-list-choices-from-sql-database
             choices: ['JD McLane', 'Jonathan Rees', 'Dylan Casabona', 'Kirk Newkirk', 'Lauren DiBerardino', 'Megan Peers', 'Matt Miller', 'Rob Taylor'],
-            name: 'employeeUpdate'
+            name: 'employeeToUpdate'
         },
         {
             type: 'list',
             message: 'Which role do you want to assign the selected employee?',
             // TODO: have list update based on existing roles in db? https://stackoverflow.com/questions/66626936/inquirer-js-populate-list-choices-from-sql-database
-            choices: ['Sales Lead', 'Sales Person', 'Lead Engineer', 'Software Engineer', 'Account Manager', 'Accountant', 'Legal Team', 'Lawyer'],
+            choices: ['Sales Lead', 'Sales Person', 'Lead Engineer', 'Software Engineer', 'Account Manager', 'Accountant', 'Legal Team Lead', 'Lawyer'],
             name: 'employeeUpdateRole'
         },
     ])
+    const getUpdateRoleid = await db.promise().query(`SELECT id FROM roles WHERE title = '${employeeUpdateRole}'`);
+    // console.log(getUpdateRoleid[0][0].id)
+    const updateRole = await db.promise().query(`UPDATE employee 
+    SET role_id = '${getUpdateRoleid[0][0].id}'
+    WHERE concat(first_name, ' ', last_name) = '${employeeToUpdate}'`);
+    updateRole
 } 
 
 const addRole = async () => {
